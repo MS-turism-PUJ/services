@@ -9,10 +9,12 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "ratings")
 public class Rating {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ratingId;
+    @Column(nullable = false)
     private Integer rating;
     private String comment;
     @ManyToOne

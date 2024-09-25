@@ -1,9 +1,6 @@
 package com.turism.services.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,9 +9,11 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "content_categories")
 public class ContentCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long contentCategoryId;
+    @Column(nullable = false)
     private String type;
 }

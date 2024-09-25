@@ -8,11 +8,12 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
+@Table(name = "questions")
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String questionId;
+    @Column(nullable = false)
     private String question;
     @ManyToOne
     @JoinColumn(name = "content_id")
@@ -20,4 +21,10 @@ public class Question {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    public Question(String question, Content content, User user) {
+        this.question = question;
+        this.content = content;
+        this.user = user;
+    }
 }

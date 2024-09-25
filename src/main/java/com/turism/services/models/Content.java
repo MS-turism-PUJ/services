@@ -9,14 +9,16 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "contents")
 public class Content {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String contentId;
+    @Column(nullable = false)
     private String name;
-    private String description = "";
-    private String image = "";
-    private String link = "";
+    private String description;
+    private String image;
+    private String link;
     @ManyToOne
     @JoinColumn(name = "content_category_id")
     private ContentCategory category;
@@ -24,4 +26,7 @@ public class Content {
     @JoinColumn(name = "service_id")
     private Service service;
 
+    public Content(String contentId) {
+        this.contentId = contentId;
+    }
 }

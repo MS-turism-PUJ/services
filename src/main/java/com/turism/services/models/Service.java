@@ -12,22 +12,22 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "services")
 public class Service {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String serviceId;
+    @Column(nullable = false)
     private Float price;
+    @Column(nullable = false)
     private String name;
-    private String description = "";
-    @Nullable
-    private Double Latitude = null;
-    @Nullable
-    private Double Longitude = null;
-    @Nullable
-    private Date departureDate = null;
-    @Nullable
-    private Date arrivalDate = null;
-    private String transportType = "";
+    @Column(nullable = false)
+    private String description;
+    private Double Latitude;
+    private Double Longitude;
+    private Date departureDate;
+    private Date arrivalDate;
+    private String transportType;
     @ManyToOne
     @JoinColumn(name = "service_category_id")
     private ServiceCategory category;
