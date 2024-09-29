@@ -19,7 +19,7 @@ spring:
         # in: because is a consumer
         # 0: Index of the binding. This allows the same method to receive from multiple queues
         receiveMessage-in-0:
-          destination: ms-example-queue
+          destination: usersQueue
           # Group is necessary to ensure that this
           # consumer receives all messages sent while
           # it was offline
