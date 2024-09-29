@@ -13,15 +13,19 @@ import java.util.List;
 
 @Service
 public class QuestionService {
-    @Autowired
-    private QuestionRepository questionRepository;
+    private final QuestionRepository questionRepository;
 
-    public List<Question> getAllQuestions(Integer page, Integer size) {
-        Pageable pageable = PageRequest.of(page, size);
-        return questionRepository.findAll();
+    @Autowired
+    public QuestionService(QuestionRepository questionRepository) {
+        this.questionRepository = questionRepository;
     }
 
-    public void CreateQuestion(String question, String contentId, String userId) {
+    public List<Question> getAllQuestionsByContent(Integer page, Integer size, String contentId) {
+        Pageable pageable = PageRequest.of(page - 1, size);
+        return questionRepository.findByContentContentId(contentId, pageable).getContent();
+    }
+
+    public void createQuestion(String question, String contentId, String userId) {
         questionRepository.save(new Question(question, new Content(contentId), new User(userId)));
     }
 }

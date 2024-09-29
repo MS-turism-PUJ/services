@@ -18,9 +18,9 @@ public class Rating {
     private Integer rating;
     private String comment;
     @ManyToOne
-    @JoinColumn(name = "service_id")
+    @JoinColumn(name = "serviceId")
     private Service service;
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "userId")
     private User user;
 }

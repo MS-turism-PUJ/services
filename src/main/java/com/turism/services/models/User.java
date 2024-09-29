@@ -15,9 +15,11 @@ import lombok.NoArgsConstructor;
 public class User {
     @Id
     private String userId;
+    @Column(nullable = false, unique = true)
+    private String username;
     @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
     private String photo;
     @Column(nullable = false)
@@ -27,7 +29,7 @@ public class User {
         this.userId = userId;
     }
 
-    public User(String name, String email, String photo, String type) {
+    public User(String username, String name, String email, String photo, String type) {
         this.name = name;
         this.email = email;
         this.photo = photo;

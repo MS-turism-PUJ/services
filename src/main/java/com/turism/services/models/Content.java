@@ -19,11 +19,8 @@ public class Content {
     private String description;
     private String image;
     private String link;
-    @ManyToOne
-    @JoinColumn(name = "content_category_id")
-    private ContentCategory category;
     @OneToOne
-    @JoinColumn(name = "service_id")
+    @JoinColumn(name = "serviceId")
     private Service service;
 
     public Content(String contentId) {
