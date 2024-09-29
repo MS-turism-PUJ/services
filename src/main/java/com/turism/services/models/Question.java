@@ -16,10 +16,10 @@ public class Question {
     @Column(nullable = false)
     private String question;
     @ManyToOne
-    @JoinColumn(name = "content_id")
+    @JoinColumn(name = "contentId")
     private Content content;
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "userId")
     private User user;
 
     public Question(String question, Content content, User user) {

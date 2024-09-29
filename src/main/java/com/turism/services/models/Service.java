@@ -29,9 +29,9 @@ public class Service {
     private Date arrivalDate;
     private String transportType;
     @ManyToOne
-    @JoinColumn(name = "service_category_id")
+    @JoinColumn(name = "serviceCategoryId")
     private ServiceCategory category;
     @OneToOne
-    @JoinColumn(name = "content_id")
+    @JoinColumn(name = "contentId")
     private Content content;
 }
