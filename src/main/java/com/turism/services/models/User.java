@@ -4,7 +4,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -22,17 +21,16 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
     private String photo;
-    @Column(nullable = false)
-    private String type;
 
     public User(String userId) {
         this.userId = userId;
     }
 
-    public User(String username, String name, String email, String photo, String type) {
+    public User(String userId, String username, String name, String email, String photo) {
+        this.userId = userId;
+        this.username = username;
         this.name = name;
         this.email = email;
         this.photo = photo;
-        this.type = type;
     }
 }
