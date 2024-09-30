@@ -4,10 +4,11 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import com.turism.services.models.User;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserMessageDTO implements Serializable {
