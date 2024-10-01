@@ -28,6 +28,10 @@ public class Service {
     private Date departureDate;
     private Date arrivalDate;
     private String transportType;
+    @Column(nullable = false)
+    private String country;
+    @Column(nullable = false)
+    private String city;
     @ManyToOne
     @JoinColumn(name = "serviceCategoryId")
     private ServiceCategory category;
