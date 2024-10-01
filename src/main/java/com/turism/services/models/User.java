@@ -20,17 +20,15 @@ public class User {
     private String name;
     @Column(nullable = false, unique = true)
     private String email;
-    private String photo;
 
     public User(String userId) {
         this.userId = userId;
     }
 
-    public User(String userId, String username, String name, String email, String photo) {
+    public User(String userId, String username, String name, String email) {
         this.userId = userId;
         this.username = username;
         this.name = name;
         this.email = email;
-        this.photo = photo;
     }
 }

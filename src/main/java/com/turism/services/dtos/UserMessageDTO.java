@@ -16,10 +16,9 @@ public class UserMessageDTO implements Serializable {
     private String username;
     private String name;
     private String email;
-    private String photo;
 
     public User toUser() {
-        return new User(userId, username, name, email, photo);
+        return new User(userId, username, name, email);
     }
 }
 
