@@ -1,7 +1,6 @@
 package com.turism.services.dtos;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 import com.turism.services.models.User;
 import lombok.AllArgsConstructor;
