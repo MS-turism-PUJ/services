@@ -21,20 +21,17 @@ public class Service {
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
+    private String city;
+    @Column(nullable = false)
+    private String country;
+    @Column(nullable = false)
     private String description;
     private Double Latitude;
     private Double Longitude;
     private Date departureDate;
     private Date arrivalDate;
     private String transportType;
-    @Column(nullable = false)
-    private String country;
-    @Column(nullable = false)
-    private String city;
     @ManyToOne
     @JoinColumn(name = "serviceCategoryId")
     private ServiceCategory category;
-    @OneToOne
-    @JoinColumn(name = "contentId")
-    private Content content;
 }

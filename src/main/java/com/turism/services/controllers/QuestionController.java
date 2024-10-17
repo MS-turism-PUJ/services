@@ -27,7 +27,7 @@ public class QuestionController {
     @GetMapping("/{contentId}")
     public ResponseEntity<?> getAllQuestionsByContent(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, @PathVariable String contentId) {
         if (!contentService.existsContent(contentId)) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorDTO("Current content does not exist", "/questions/" + contentId, 404));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorDTO("Current content does not exist"));
         }
 
         return ResponseEntity.ok(questionService.getAllQuestionsByContent(page, size, contentId));
@@ -36,7 +36,7 @@ public class QuestionController {
     @PostMapping("/{contentId}")
     public ResponseEntity<?> createQuestion(@RequestHeader("X-Preferred-Username") String preferredUsername, @PathVariable String contentId, @RequestBody QuestionDTO questionDTO) {
         if (!contentService.existsContent(contentId)) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorDTO("Current content does not exist", "/questions/" + contentId, 404));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorDTO("Current content does not exist"));
         }
 
         String userId = userService.getUserByUsername(preferredUsername).getUserId();

@@ -7,6 +7,9 @@ import lombok.Getter;
 @Getter
 public class ErrorDTO {
     private String message;
-    private String path;
-    private Integer status;
+    private Object data = null;
+
+    public ErrorDTO(String message) {
+        this.message = message;
+    }
 }
