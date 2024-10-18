@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.turism.services.models.Service;
@@ -23,8 +24,7 @@ public class ServiceController {
     }
 
     @GetMapping
-    public List<Service> getAllMyServices(@RequestHeader("X-Preferred-Username") String username) {
-        return serviceSerivce.getAllServices(username);
-
+    public List<Service> getAllMyServices(@RequestHeader("X-Preferred-Username") String username, @RequestParam("page") Integer page, @RequestParam("limit") Integer limit) {
+        return serviceSerivce.getAllServices(username, page, limit);
     }
 }
