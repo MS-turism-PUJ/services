@@ -11,6 +11,7 @@ import com.turism.services.models.User;
 import com.turism.services.repositories.ServiceRepository;
 import com.turism.services.repositories.UserRepository;
 
+@org.springframework.stereotype.Service
 public class ServiceService {
     private ServiceRepository serviceRepository;
     private UserRepository userRepository;
@@ -21,15 +22,10 @@ public class ServiceService {
         this.userRepository = userRepository;
     }
 
-    public List<Service> getAllServices(String username, Integer page, Integer limit) {
+    public List<Service> getAllMyServices(String username, Integer page, Integer limit) {
         User user = userRepository.findByUsername(username);
-        Pageable pageable = PageRequest.of(page, limit);
+        Pageable pageable = PageRequest.of(page - 1, limit);
         List<Service> services = serviceRepository.findAllByUser(user, pageable).getContent();
         return services;
-    }
-
-    public Service createService(Service service) {
-        Service createdService = serviceRepository.save(service);
-        return createdService;
     }
 }

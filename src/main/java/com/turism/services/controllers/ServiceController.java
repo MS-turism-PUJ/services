@@ -24,7 +24,7 @@ public class ServiceController {
     }
 
     @GetMapping
-    public List<Service> getAllMyServices(@RequestHeader("X-Preferred-Username") String username, @RequestParam("page") Integer page, @RequestParam("limit") Integer limit) {
-        return serviceSerivce.getAllServices(username, page, limit);
+    public List<Service> getAllMyServices(@RequestHeader("X-Preferred-Username") String username, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer limit) {
+        return serviceSerivce.getAllMyServices(username, page, limit);
     }
 }

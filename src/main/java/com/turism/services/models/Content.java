@@ -22,6 +22,12 @@ public class Content {
     @OneToOne
     @JoinColumn(name = "serviceId")
     private Service service;
+    @ManyToOne
+    @JoinColumn(name = "contentCategoryId")
+    private ContentCategory category;
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User user;
 
     public Content(String contentId) {
         this.contentId = contentId;
