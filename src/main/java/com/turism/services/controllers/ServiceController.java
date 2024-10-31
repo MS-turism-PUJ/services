@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.turism.services.models.Service;
 import com.turism.services.services.ServiceService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 @RequestMapping("/services")
 public class ServiceController {
@@ -25,6 +28,7 @@ public class ServiceController {
 
     @GetMapping
     public List<Service> getAllMyServices(@RequestHeader("X-Preferred-Username") String username, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer limit) {
+        log.info("GET /services with page: {} and limit: {} for user: {}", page, limit, username);
         return serviceSerivce.getAllMyServices(username, page, limit);
     }
 }

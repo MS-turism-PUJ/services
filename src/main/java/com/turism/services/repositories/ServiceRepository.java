@@ -8,5 +8,5 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ServiceRepository extends JpaRepository<Service, String> {
-    Page<Service> findAllByUser(User user, Pageable pageable);
+    Page<Service> findByContentUser(User user, Pageable pageable);
 }

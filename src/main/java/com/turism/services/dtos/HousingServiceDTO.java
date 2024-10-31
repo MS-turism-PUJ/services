@@ -1,6 +1,6 @@
 package com.turism.services.dtos;
 
-import java.util.Date;
+import java.time.LocalTime;
 
 import com.turism.services.models.Service;
 
@@ -20,7 +20,7 @@ public class HousingServiceDTO extends ServiceDTO {
     @Valid
     private PlaceDTO place;
     @NotBlank(message = "Time is required")
-    private Date time;
+    private LocalTime time;
 
     public Service toService() {
         Service service = new Service(

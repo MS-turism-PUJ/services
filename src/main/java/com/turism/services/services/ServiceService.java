@@ -25,7 +25,7 @@ public class ServiceService {
     public List<Service> getAllMyServices(String username, Integer page, Integer limit) {
         User user = userRepository.findByUsername(username);
         Pageable pageable = PageRequest.of(page - 1, limit);
-        List<Service> services = serviceRepository.findAllByUser(user, pageable).getContent();
+        List<Service> services = serviceRepository.findByContentUser(user, pageable).getContent();
         return services;
     }
 }

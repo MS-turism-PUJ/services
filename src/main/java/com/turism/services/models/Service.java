@@ -8,6 +8,10 @@ import lombok.Setter;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.time.LocalTime;
+
 @Entity
 @Getter
 @Setter
@@ -33,7 +37,7 @@ public class Service {
     private Double arrivalLatitude;
     private Double arrivalLongitude;
     private Date departureDate;
-    private Date time;
+    private LocalTime time;
     private String transportType;
     private String drink;
     private String lunch;
@@ -41,6 +45,10 @@ public class Service {
     @ManyToOne
     @JoinColumn(name = "serviceCategoryId")
     private ServiceCategory category;
+    @OneToOne
+    @JoinColumn(name = "contentId")
+    @JsonIgnore
+    private Content content;
 
     public Service(String name, Float price, String description, String city, String country) {
         this.name = name;

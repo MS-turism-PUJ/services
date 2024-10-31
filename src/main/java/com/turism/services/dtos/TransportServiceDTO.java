@@ -1,5 +1,6 @@
 package com.turism.services.dtos;
 
+import java.time.LocalTime;
 import java.util.Date;
 
 import com.turism.services.models.Service;
@@ -25,7 +26,7 @@ public class TransportServiceDTO extends ServiceDTO {
     @NotBlank(message = "Departure date is required")
     private Date departureDate;
     @NotBlank(message = "Time is required")
-    private Date time;
+    private LocalTime time;
     @NotBlank(message = "Transport type is required")
     private String transportType;
 
