@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,33 +23,64 @@ public class Service {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String serviceId;
+
     @Column(nullable = false)
     private Float price;
+
     @Column(nullable = false)
     private String name;
+
     @Column(nullable = false)
     private String city;
+    
     @Column(nullable = false)
     private String country;
+    
     @Column(nullable = false)
     private String description;
+    
+    @Column
     private Double latitude;
+    
+    @Column
     private Double longitude;
+    
+    @Column
     private Double arrivalLatitude;
+    
+    @Column
     private Double arrivalLongitude;
+    
+    @Column
     private Date departureDate;
+    
+    @Column
     private LocalTime time;
+    
+    @Column
     private String transportType;
+    
+    @Column
     private String drink;
+    
+    @Column
     private String lunch;
+    
+    @Column
     private String dessert;
+    
     @ManyToOne
     @JoinColumn(name = "serviceCategoryId")
     private ServiceCategory category;
-    @OneToOne
-    @JoinColumn(name = "contentId")
+    
+    @OneToMany(mappedBy = "service")
     @JsonIgnore
-    private Content content;
+    private List<Content> contents;
+    
+    @JoinColumn(name = "userId")
+    @ManyToOne
+    @JsonIgnore
+    private User user;
 
     public Service(String name, Float price, String description, String city, String country) {
         this.name = name;

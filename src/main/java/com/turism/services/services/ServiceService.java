@@ -25,7 +25,17 @@ public class ServiceService {
     public List<Service> getAllMyServices(String username, Integer page, Integer limit) {
         User user = userRepository.findByUsername(username);
         Pageable pageable = PageRequest.of(page - 1, limit);
-        List<Service> services = serviceRepository.findByContentUser(user, pageable).getContent();
+        List<Service> services = serviceRepository.findByUser(user, pageable).getContent();
         return services;
+    }
+
+    public Service createService(Service service, String username) {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            throw new Error("User not found");
+        }
+        service.setUser(user);
+        serviceRepository.save(service);
+        return service;
     }
 }

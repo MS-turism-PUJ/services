@@ -14,6 +14,7 @@ public class ServiceCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long serviceCategoryId;
+
     @Column(nullable = false)
     private String type;
 }

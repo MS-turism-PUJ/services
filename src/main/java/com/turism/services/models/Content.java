@@ -14,17 +14,23 @@ public class Content {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String contentId;
+
     @Column(nullable = false)
     private String name;
+
+    @Column
     private String description;
+
+    @Column
     private String image;
+
+    @Column
     private String link;
-    @OneToOne
+
+    @ManyToOne
     @JoinColumn(name = "serviceId")
     private Service service;
-    @ManyToOne
-    @JoinColumn(name = "contentCategoryId")
-    private ContentCategory category;
+
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
