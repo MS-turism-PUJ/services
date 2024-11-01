@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
+import com.turism.services.dtos.ServiceMessageDTO;
 import com.turism.services.models.Service;
 import com.turism.services.models.User;
 import com.turism.services.repositories.ServiceRepository;
@@ -15,11 +16,13 @@ import com.turism.services.repositories.UserRepository;
 public class ServiceService {
     private ServiceRepository serviceRepository;
     private UserRepository userRepository;
+    private MessageQueueService messageQueueService;
 
     @Autowired
-    public ServiceService(ServiceRepository serviceRepository, UserRepository userRepository) {
+    public ServiceService(ServiceRepository serviceRepository, UserRepository userRepository, MessageQueueService messageQueueService) {
         this.serviceRepository = serviceRepository;
         this.userRepository = userRepository;
+        this.messageQueueService = messageQueueService;
     }
 
     public List<Service> getAllMyServices(String username, Integer page, Integer limit) {
@@ -34,8 +37,11 @@ public class ServiceService {
         if (user == null) {
             throw new Error("User not found");
         }
+
         service.setUser(user);
         serviceRepository.save(service);
+        messageQueueService.sendMessage(new ServiceMessageDTO(service));
+
         return service;
     }
 }

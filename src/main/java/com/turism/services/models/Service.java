@@ -69,8 +69,8 @@ public class Service {
     @Column
     private String dessert;
     
-    @ManyToOne
-    @JoinColumn(name = "serviceCategoryId")
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private ServiceCategory category;
     
     @OneToMany(mappedBy = "service")

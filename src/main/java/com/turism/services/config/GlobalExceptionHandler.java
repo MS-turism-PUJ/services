@@ -47,10 +47,4 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(new ErrorDTO("Validation failed", errors), HttpStatus.BAD_REQUEST);
     }
-
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<Object> handleException(Exception e) {
-        log.error("Unhandled exception", e);
-        return new ResponseEntity<>(new ErrorDTO("Internal server error"), HttpStatus.INTERNAL_SERVER_ERROR);
-    }
 }

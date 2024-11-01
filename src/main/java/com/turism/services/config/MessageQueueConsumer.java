@@ -24,6 +24,8 @@ import lombok.extern.slf4j.Slf4j;
 public class MessageQueueConsumer {
     private final String queueName = "usersQueue";
 
+    private final String groupId = "services-group";
+
     private final UserService userService;
 
     @Autowired
@@ -36,7 +38,7 @@ public class MessageQueueConsumer {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put("auto.offset.reset", "earliest");
         configProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-        configProps.put(ConsumerConfig.GROUP_ID_CONFIG, "services-group");
+        configProps.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
         configProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
         configProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
         configProps.put(JsonDeserializer.TRUSTED_PACKAGES, "com.turism.*");
@@ -50,7 +52,7 @@ public class MessageQueueConsumer {
         return factory;
     }
 
-    @KafkaListener(topics = queueName, groupId = "services-group")
+    @KafkaListener(topics = queueName, groupId = groupId)
     public void listen(String userJson) {
         log.info("Received UserMessageDTO: {}", userJson);
         Gson gson = new Gson();
