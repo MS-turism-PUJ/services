@@ -40,8 +40,12 @@ public class ServiceService {
 
         service.setUser(user);
         serviceRepository.save(service);
-        messageQueueService.sendMessage(new ServiceMessageDTO(service));
+        messageQueueService.sendServiceMessage(new ServiceMessageDTO(service));
 
         return service;
+    }
+
+    public Boolean existsService(String serviceId) {
+        return serviceRepository.existsById(serviceId);
     }
 }

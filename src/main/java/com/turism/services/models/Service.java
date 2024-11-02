@@ -82,6 +82,10 @@ public class Service {
     @JsonIgnore
     private User user;
 
+    public Service(String serviceId) {
+        this.serviceId = serviceId;
+    }
+
     public Service(String name, Float price, String description, String city, String country) {
         this.name = name;
         this.price = price;

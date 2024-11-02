@@ -3,16 +3,22 @@ package com.turism.services.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.turism.services.dtos.ContentDTO;
+import com.turism.services.dtos.ErrorDTO;
 import com.turism.services.models.Content;
 import com.turism.services.services.ContentService;
+import com.turism.services.services.ServiceService;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -20,10 +26,12 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/contents")
 public class ContentController {
     private final ContentService contentSerivce;
+    private final ServiceService serviceService;
 
     @Autowired
-    public ContentController(ContentService contentService) {
+    public ContentController(ContentService contentService, ServiceService serviceService) {
         this.contentSerivce = contentService;
+        this.serviceService = serviceService;
     }
 
     @GetMapping
@@ -34,7 +42,11 @@ public class ContentController {
     }
 
     @PostMapping
-    public Content createContent(@RequestHeader("X-Preferred-Username") String username) {
-        return null;
+    public ResponseEntity<?> createContent(@RequestHeader("X-Preferred-Username") String username, @Valid @RequestBody ContentDTO contentDTO) {
+        log.info("POST /contents for user: {}", username);
+        if (!serviceService.existsService(contentDTO.getServiceId())) {
+            return ResponseEntity.status(404).body(new ErrorDTO("Service not found", contentDTO.getServiceId()));
+        }
+        return ResponseEntity.ok(contentSerivce.createContent(contentDTO.toContent(), username));
     }
 }

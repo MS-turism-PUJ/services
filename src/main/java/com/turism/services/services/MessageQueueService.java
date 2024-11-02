@@ -1,6 +1,7 @@
 package com.turism.services.services;
 
 import com.google.gson.Gson;
+import com.turism.services.dtos.ContentMessageDTO;
 import com.turism.services.dtos.ServiceMessageDTO;
 
 import org.springframework.kafka.support.serializer.JsonSerializer;
@@ -18,7 +19,8 @@ import java.util.Map;
 @Slf4j
 @Service
 public class MessageQueueService {
-    private static final String queueName = "servicesQueue";
+    private static final String servicesQueueName = "servicesQueue";
+    private static final String contentsQueueName = "contentsQueue";
     private final KafkaTemplate<String, Object> kafkaTemplate;
 
     public MessageQueueService() {
@@ -38,12 +40,23 @@ public class MessageQueueService {
         this.kafkaTemplate = new KafkaTemplate<>(producerFactory);
     }
 
-    public void sendMessage(ServiceMessageDTO service) {
+    public void sendServiceMessage(ServiceMessageDTO service) {
         log.info("Sending message to Kafka");
         Gson gson = new Gson();
         try {
-            kafkaTemplate.send(queueName, gson.toJson(service));
-            log.info("Message sent: {}", queueName);
+            kafkaTemplate.send(servicesQueueName, gson.toJson(service));
+            log.info("Message sent: {}", servicesQueueName);
+        } catch (Exception e) {
+            log.error("Error sending message", e);
+        }
+    }
+
+    public void sendContentMessage(ContentMessageDTO content) {
+        log.info("Sending message to Kafka");
+        Gson gson = new Gson();
+        try {
+            kafkaTemplate.send(contentsQueueName, gson.toJson(content));
+            log.info("Message sent: {}", contentsQueueName);
         } catch (Exception e) {
             log.error("Error sending message", e);
         }

@@ -1,5 +1,6 @@
 package com.turism.services.services;
 
+import com.turism.services.dtos.ContentMessageDTO;
 import com.turism.services.models.Content;
 import com.turism.services.models.User;
 import com.turism.services.repositories.ContentRepository;
@@ -16,11 +17,13 @@ import org.springframework.stereotype.Service;
 public class ContentService {
     private final ContentRepository contentRepository;
     private final UserRepository userRepository;
+    private final MessageQueueService messageQueueService;
 
     @Autowired
-    public ContentService(ContentRepository contentRepository, UserRepository userRepository) {
+    public ContentService(ContentRepository contentRepository, UserRepository userRepository, MessageQueueService messageQueueService) {
         this.contentRepository = contentRepository;
         this.userRepository = userRepository;
+        this.messageQueueService = messageQueueService;
     }
 
     public List<Content> getAllMyContents(String username, Integer page, Integer limit) {
@@ -35,5 +38,18 @@ public class ContentService {
 
     public Boolean existsContent(String contentId) {
         return contentRepository.existsById(contentId);
+    }
+
+    public Content createContent(Content content, String username) {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            throw new Error("User not found");
+        }
+
+        content.setUser(user);
+        publishContent(content);
+        messageQueueService.sendContentMessage(new ContentMessageDTO(content));
+
+        return content;
     }
 }
