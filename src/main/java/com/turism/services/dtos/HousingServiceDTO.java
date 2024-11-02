@@ -1,6 +1,6 @@
 package com.turism.services.dtos;
 
-import java.time.LocalTime;
+import java.time.Duration;
 import java.util.Date;
 
 import com.turism.services.models.Service;
@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class HousingServiceDTO extends ServiceDTO {
-    @NotNull(message = "Housing type is required")
+    @NotNull(message = "Place is required")
     @Valid
     private PlaceDTO place;
 
@@ -27,8 +27,8 @@ public class HousingServiceDTO extends ServiceDTO {
     @Future(message = "Date must be in the future")
     private Date date;
 
-    @NotNull(message = "Time is required")
-    private LocalTime time;
+    @NotNull(message = "Duration is required")
+    private Duration duration;
 
     public Service toService() {
         Service service = new Service(
@@ -39,7 +39,7 @@ public class HousingServiceDTO extends ServiceDTO {
                 country);
         service.setLatitude(place.getLatitude());
         service.setLongitude(place.getLongitude());
-        service.setTime(time);
+        service.setDuration(duration);
         service.setDepartureDate(date);
         service.setCategory(ServiceCategory.HOUSING);
 

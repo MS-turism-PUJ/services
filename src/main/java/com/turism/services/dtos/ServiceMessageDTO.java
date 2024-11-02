@@ -1,6 +1,7 @@
 package com.turism.services.dtos;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 
 import com.turism.services.models.Service;
 import com.turism.services.models.ServiceCategory;
@@ -37,7 +38,7 @@ public class ServiceMessageDTO implements Serializable {
 
     private String departureDate;
 
-    private String time;
+    private String duration;
 
     private String transportType;
 
@@ -63,8 +64,9 @@ public class ServiceMessageDTO implements Serializable {
         this.longitude = service.getLongitude();
         this.arrivalLatitude = service.getArrivalLatitude();
         this.arrivalLongitude = service.getArrivalLongitude();
-        this.departureDate = service.getDepartureDate() == null ? null : service.getDepartureDate().toString();
-        this.time = service.getTime() == null ? null : service.getTime().toString();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        this.departureDate = service.getDepartureDate() == null ? null : sdf.format(service.getDepartureDate());
+        this.duration = service.getDuration() == null ? null : service.getDuration().toString();
         this.transportType = service.getTransportType();
         this.drink = service.getDrink();
         this.lunch = service.getLunch();

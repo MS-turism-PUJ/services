@@ -11,7 +11,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.time.LocalTime;
+import java.time.Duration;
 
 @Entity
 @Getter
@@ -55,7 +55,7 @@ public class Service {
     private Date departureDate;
     
     @Column
-    private LocalTime time;
+    private Duration duration;
     
     @Column
     private String transportType;

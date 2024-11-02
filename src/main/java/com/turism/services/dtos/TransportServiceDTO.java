@@ -1,6 +1,6 @@
 package com.turism.services.dtos;
 
-import java.time.LocalTime;
+import java.time.Duration;
 import java.util.Date;
 
 import com.turism.services.models.Service;
@@ -20,11 +20,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class TransportServiceDTO extends ServiceDTO {
-    @NotNull(message = "Departure city is required")
+    @NotNull(message = "Departure is required")
     @Valid
     private PlaceDTO departure;
 
-    @NotNull(message = "Arrival city is required")
+    @NotNull(message = "Arrival is required")
     @Valid
     private PlaceDTO arrival;
 
@@ -32,8 +32,8 @@ public class TransportServiceDTO extends ServiceDTO {
     @Future(message = "Departure date must be in the future")
     private Date departureDate;
 
-    @NotNull(message = "Time is required")
-    private LocalTime time;
+    @NotNull(message = "Duration is required")
+    private Duration duration;
 
     @NotBlank(message = "Transport type is required")
     private String transportType;
@@ -46,7 +46,7 @@ public class TransportServiceDTO extends ServiceDTO {
                 city,
                 country);
         service.setDepartureDate(departureDate);
-        service.setTime(time);
+        service.setDuration(duration);
         service.setTransportType(transportType);
         service.setLatitude(departure.getLatitude());
         service.setLongitude(departure.getLongitude());
