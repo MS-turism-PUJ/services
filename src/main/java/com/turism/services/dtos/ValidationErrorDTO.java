@@ -7,6 +7,7 @@ import lombok.Getter;
 @Getter
 public class ValidationErrorDTO {
     private String field;
+
     private String message;
 }
 

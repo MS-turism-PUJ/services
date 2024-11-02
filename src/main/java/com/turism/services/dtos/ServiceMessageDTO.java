@@ -15,6 +15,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ServiceMessageDTO implements Serializable {
+    private String serviceId;
+
     private Float price;
 
     private String name;
@@ -51,6 +53,7 @@ public class ServiceMessageDTO implements Serializable {
     private String userId;
 
     public ServiceMessageDTO(Service service) {
+        this.serviceId = service.getServiceId();
         this.price = service.getPrice();
         this.name = service.getName();
         this.city = service.getCity();

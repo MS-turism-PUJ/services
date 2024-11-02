@@ -16,8 +16,10 @@ import lombok.NoArgsConstructor;
 public class AlimentationServiceDTO extends ServiceDTO {
     @NotBlank(message = "Drink is required")
     private String drink;
+
     @NotBlank(message = "Lunch is required")
     private String lunch;
+
     @NotBlank(message = "Dessert is required")
     private String dessert;
 
