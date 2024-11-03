@@ -17,13 +17,11 @@ public class ContentDTO {
 
     private String description;
 
-    private String image;
-
     private String link;
 
     private String serviceId;
 
     public Content toContent() {
-        return new Content(null, name, description, image, link, new Service(serviceId), null);
+        return new Content(null, name, description, link, new Service(serviceId), null);
     }
 }

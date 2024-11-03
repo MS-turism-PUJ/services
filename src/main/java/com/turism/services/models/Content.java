@@ -24,9 +24,6 @@ public class Content {
     private String description;
 
     @Column
-    private String image;
-
-    @Column
     private String link;
 
     @ManyToOne
