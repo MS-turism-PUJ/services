@@ -2,7 +2,6 @@ package com.turism.services.controllers;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +27,6 @@ public class ContentController {
     private final ContentService contentSerivce;
     private final ServiceService serviceService;
 
-    @Autowired
     public ContentController(ContentService contentService, ServiceService serviceService) {
         this.contentSerivce = contentService;
         this.serviceService = serviceService;

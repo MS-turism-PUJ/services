@@ -8,7 +8,6 @@ import com.turism.services.repositories.UserRepository;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,6 @@ public class ContentService {
     private final UserRepository userRepository;
     private final MessageQueueService messageQueueService;
 
-    @Autowired
     public ContentService(ContentRepository contentRepository, UserRepository userRepository, MessageQueueService messageQueueService) {
         this.contentRepository = contentRepository;
         this.userRepository = userRepository;

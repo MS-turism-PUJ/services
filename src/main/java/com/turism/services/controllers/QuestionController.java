@@ -9,7 +9,6 @@ import com.turism.services.services.UserService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +21,6 @@ public class QuestionController {
     private final UserService userService;
     private final ContentService contentService;
 
-    @Autowired
     public QuestionController(QuestionService questionService, UserService userService, ContentService contentService) {
         this.questionService = questionService;
         this.userService = userService;

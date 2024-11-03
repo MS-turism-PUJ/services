@@ -2,7 +2,6 @@ package com.turism.services.services;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
@@ -18,7 +17,6 @@ public class ServiceService {
     private UserRepository userRepository;
     private MessageQueueService messageQueueService;
 
-    @Autowired
     public ServiceService(ServiceRepository serviceRepository, UserRepository userRepository, MessageQueueService messageQueueService) {
         this.serviceRepository = serviceRepository;
         this.userRepository = userRepository;
