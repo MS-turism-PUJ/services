@@ -46,4 +46,8 @@ public class ServiceService {
     public Boolean existsService(String serviceId) {
         return serviceRepository.existsById(serviceId);
     }
+
+    public Service getService(String serviceId) {
+        return serviceRepository.findById(serviceId).orElse(null);
+    }           
 }
