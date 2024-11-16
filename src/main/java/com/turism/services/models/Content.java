@@ -26,6 +26,12 @@ public class Content {
     @Column
     private String link;
 
+    @Column
+    private String photo;
+
+    @Column
+    private String photoExtension;
+
     @ManyToOne
     @JoinColumn(name = "serviceId")
     private Service service;

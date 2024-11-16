@@ -12,11 +12,14 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String questionId;
+
     @Column(nullable = false)
     private String question;
+
     @ManyToOne
     @JoinColumn(name = "contentId")
     private Content content;
+
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;

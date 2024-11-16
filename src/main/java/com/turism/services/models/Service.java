@@ -32,51 +32,51 @@ public class Service {
 
     @Column(nullable = false)
     private String city;
-    
+
     @Column(nullable = false)
     private String country;
-    
+
     @Column(nullable = false)
     private String description;
-    
+
     @Column
     private Double latitude;
-    
+
     @Column
     private Double longitude;
-    
+
     @Column
     private Double arrivalLatitude;
-    
+
     @Column
     private Double arrivalLongitude;
-    
+
     @Column
     private Date departureDate;
-    
+
     @Column
     private Duration duration;
-    
+
     @Column
     private String transportType;
-    
+
     @Column
     private String drink;
-    
+
     @Column
     private String lunch;
-    
+
     @Column
     private String dessert;
-    
+
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private ServiceCategory category;
-    
+
     @OneToMany(mappedBy = "service")
     @JsonIgnore
     private List<Content> contents;
-    
+
     @JoinColumn(name = "userId")
     @ManyToOne
     @JsonIgnore

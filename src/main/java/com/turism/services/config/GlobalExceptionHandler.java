@@ -20,7 +20,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    @SuppressWarnings("null")
     @ExceptionHandler({MethodArgumentNotValidException.class, BindException.class, WebExchangeBindException.class})
     public ResponseEntity<Object> handleMethodArgumentNotValidException(Exception e) {
         List<ValidationErrorDTO> errors;

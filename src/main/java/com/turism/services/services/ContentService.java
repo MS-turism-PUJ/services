@@ -38,14 +38,22 @@ public class ContentService {
         return contentRepository.existsById(contentId);
     }
 
-    public Content createContent(Content content, String username) {
+    public Content getContent(String contentId) {
+        return contentRepository.findById(contentId).orElse(null);
+    }
+
+    public Content createContent(Content content, String username, Boolean setPhoto) {
         User user = userRepository.findByUsername(username);
         if (user == null) {
             throw new Error("User not found");
         }
 
         content.setUser(user);
-        publishContent(content);
+        content = publishContent(content);
+        if (setPhoto) {
+            content.setPhoto(content.getContentId());
+            content = publishContent(content);
+        }
         messageQueueService.sendContentMessage(new ContentMessageDTO(content));
 
         return content;
