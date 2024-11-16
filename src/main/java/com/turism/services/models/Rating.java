@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class Rating {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private Long ratingId;
+    private String ratingId;
 
     @Column(nullable = false)
     private Integer rating;

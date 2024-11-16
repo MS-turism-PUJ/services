@@ -1,7 +1,5 @@
 package com.turism.services.dtos;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import com.turism.services.models.Content;
 import com.turism.services.models.Service;
 
@@ -11,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import org.apache.commons.io.FilenameUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 @NoArgsConstructor
