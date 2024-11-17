@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -80,8 +81,8 @@ public class ContentController {
         return ResponseEntity.ok(contentSerivce.createContent(contentDTO.toContent(), username, contentDTO.getPhoto() != null));
     }
 
-    @GetMapping("/photo")
-    public ResponseEntity<?> getPhoto(@RequestParam String contentId) {
+    @GetMapping("/{contentId}/photo")
+    public ResponseEntity<?> getPhoto(@PathVariable String contentId) {
         log.info("GET /contents/photo for content: {}", contentId);
 
         Content content = contentSerivce.getContent(contentId);
