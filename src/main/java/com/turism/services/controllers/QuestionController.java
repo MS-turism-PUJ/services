@@ -47,7 +47,6 @@ public class QuestionController {
         }
 
         String userId = userService.getUserByUsername(username).getUserId();
-        questionService.createQuestion(questionDTO.getQuestion(), contentId, userId);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(questionService.createQuestion(questionDTO.getQuestion(), contentId, userId));
     }
 }

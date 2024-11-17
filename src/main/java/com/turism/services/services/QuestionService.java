@@ -23,7 +23,7 @@ public class QuestionService {
         return questionRepository.findByContentContentId(contentId, pageable).getContent();
     }
 
-    public void createQuestion(String question, String contentId, String userId) {
-        questionRepository.save(new Question(question, new Content(contentId), new User(userId)));
+    public Question createQuestion(String question, String contentId, String userId) {
+        return questionRepository.save(new Question(question, new Content(contentId), new User(userId)));
     }
 }

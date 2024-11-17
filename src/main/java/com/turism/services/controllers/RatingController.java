@@ -1,7 +1,6 @@
 package com.turism.services.controllers;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.turism.services.dtos.ErrorDTO;
 import com.turism.services.dtos.RatingDTO;
+import com.turism.services.dtos.RatingsResponseDTO;
 import com.turism.services.models.Rating;
 import com.turism.services.models.Service;
 import com.turism.services.services.RatingService;
@@ -50,7 +50,11 @@ public class RatingController {
 
         Double averageRating = ratingService.getAverageRating(service);
 
-        return ResponseEntity.ok(Map.of("ratings", ratings, "averageRating", Math.round(averageRating * 10) / 10));
+        RatingsResponseDTO ratingsResponseDTO = new RatingsResponseDTO(averageRating, ratings.stream().map(rating -> {
+            return new RatingDTO(rating.getRating(), rating.getComment());
+        }).toList());
+
+        return ResponseEntity.ok(ratingsResponseDTO);
     }
 
     @PostMapping("/rate/{serviceId}")
