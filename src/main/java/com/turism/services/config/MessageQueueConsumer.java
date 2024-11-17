@@ -35,7 +35,8 @@ public class MessageQueueConsumer {
     }
 
     @Bean
-    public ConsumerFactory<String, UserMessageDTO> consumerFactory(@Value("${spring.kafka.bootstrap-servers}") String kafkaBootstrapServers) {
+    public ConsumerFactory<String, UserMessageDTO> consumerFactory(
+            @Value("${spring.kafka.bootstrap-servers}") String kafkaBootstrapServers) {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put("auto.offset.reset", "earliest");
         configProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBootstrapServers);
@@ -47,7 +48,8 @@ public class MessageQueueConsumer {
     }
 
     @Bean
-    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, UserMessageDTO>> kafkaListenerContainerFactory(@Value("${spring.kafka.bootstrap-servers}") String kafkaBootstrapServers) {
+    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, UserMessageDTO>> kafkaListenerContainerFactory(
+            @Value("${spring.kafka.bootstrap-servers}") String kafkaBootstrapServers) {
         ConcurrentKafkaListenerContainerFactory<String, UserMessageDTO> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory(kafkaBootstrapServers));
         return factory;
