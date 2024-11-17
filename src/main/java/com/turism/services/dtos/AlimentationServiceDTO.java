@@ -23,6 +23,13 @@ public class AlimentationServiceDTO extends ServiceDTO {
     @NotBlank(message = "Dessert is required")
     private String dessert;
 
+    public AlimentationServiceDTO(String name, Float price, String description, String city, String country, String drink, String lunch, String dessert) {
+        super(name, price, description, city, country);
+        this.drink = drink;
+        this.lunch = lunch;
+        this.dessert = dessert;
+    }
+
     public Service toService() {
         Service service = new Service(
                 name,

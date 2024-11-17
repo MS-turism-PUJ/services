@@ -2,6 +2,8 @@ package com.turism.services.dtos;
 
 import java.time.Duration;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.turism.services.models.Service;
 import com.turism.services.models.ServiceCategory;
@@ -38,6 +40,15 @@ public class TransportServiceDTO extends ServiceDTO {
     @NotBlank(message = "Transport type is required")
     private String transportType;
 
+    public TransportServiceDTO(String name, Float price, String description, String city, String country, PlaceDTO departure, PlaceDTO arrival, Date departureDate, Duration duration, String transportType) {
+        super(name, price, description, city, country);
+        this.departure = departure;
+        this.arrival = arrival;
+        this.departureDate = departureDate;
+        this.duration = duration;
+        this.transportType = transportType;
+    }
+
     public Service toService() {
         Service service = new Service(
                 name,
@@ -55,5 +66,26 @@ public class TransportServiceDTO extends ServiceDTO {
         service.setCategory(ServiceCategory.TRANSPORT);
 
         return service;
+    }
+
+    public Map<String, Object> toMap() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", name);
+        map.put("price", price);
+        map.put("description", description);
+        map.put("city", city);
+        map.put("country", country);
+        Map<String, Object> departure = new HashMap<>();
+        departure.put("latitude", this.departure.getLatitude());
+        departure.put("longitude", this.departure.getLongitude());
+        map.put("departure", departure);
+        Map<String, Object> arrival = new HashMap<>();
+        arrival.put("latitude", this.arrival.getLatitude());
+        arrival.put("longitude", this.arrival.getLongitude());
+        map.put("arrival", arrival);
+        map.put("departureDate", departureDate.toInstant().toString());
+        map.put("duration", duration.toString());
+        map.put("transportType", transportType);
+        return map;
     }
 }

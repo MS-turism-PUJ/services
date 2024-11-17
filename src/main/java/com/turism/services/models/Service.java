@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.turism.services.dtos.ServiceMessageDTO;
 
 import java.time.Duration;
 
@@ -92,5 +93,9 @@ public class Service {
         this.description = description;
         this.city = city;
         this.country = country;
+    }
+
+    public ServiceMessageDTO toServiceMessageDTO() {
+        return new ServiceMessageDTO(this);
     }
 }

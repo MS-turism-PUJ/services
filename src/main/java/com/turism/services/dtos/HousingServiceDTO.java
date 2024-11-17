@@ -2,6 +2,8 @@ package com.turism.services.dtos;
 
 import java.time.Duration;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.turism.services.models.Service;
 import com.turism.services.models.ServiceCategory;
@@ -29,6 +31,29 @@ public class HousingServiceDTO extends ServiceDTO {
 
     @NotNull(message = "Duration is required")
     private Duration duration;
+
+    public HousingServiceDTO(String name, Float price, String description, String city, String country, PlaceDTO place, Date date, Duration duration) {
+        super(name, price, description, city, country);
+        this.place = place;
+        this.date = date;
+        this.duration = duration;
+    }
+
+    public Map<String, Object> toMap() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", name);
+        map.put("price", price);
+        map.put("description", description);
+        map.put("city", city);
+        map.put("country", country);
+        Map<String, Object> place = new HashMap<>();
+        place.put("latitude", this.place.getLatitude());
+        place.put("longitude", this.place.getLongitude());
+        map.put("place", place);
+        map.put("date", date.toInstant().toString());
+        map.put("duration", duration.toString());
+        return map;
+    }
 
     public Service toService() {
         Service service = new Service(
