@@ -6,7 +6,6 @@ import java.util.Map;
 import com.google.gson.Gson;
 import com.turism.services.services.UserService;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,7 +28,6 @@ public class MessageQueueConsumer {
 
     private final UserService userService;
 
-    @Autowired
     public MessageQueueConsumer(UserService userService) {
         this.userService = userService;
     }
