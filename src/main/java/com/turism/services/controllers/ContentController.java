@@ -78,7 +78,7 @@ public class ContentController {
             }
         }
 
-        return ResponseEntity.ok(contentSerivce.createContent(contentDTO.toContent(), username, contentDTO.getPhoto() != null));
+        return ResponseEntity.ok(content);
     }
 
     @GetMapping("/{contentId}/photo")
