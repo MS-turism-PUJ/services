@@ -55,8 +55,8 @@ public class TransportServiceDTO extends ServiceDTO {
                 price,
                 description,
                 city,
-                country,
-                duration);
+                country);
+        service.setDuration(duration);
         service.setDepartureDate(departureDate);
         service.setTransportType(transportType);
         service.setLatitude(departure.getLatitude());
