@@ -156,7 +156,7 @@ class ServiceControllerTest {
                 "housingCountryTest",
                 place,
                 tomorrow,
-                Duration.parse("P9D"));
+                3);
 
         Gson gson = new Gson();
 
@@ -230,9 +230,9 @@ class ServiceControllerTest {
                 departure,
                 arrival,
                 tomorrow,
-                Duration.parse("P9D"),
+                3,
                 "transportTypeTest");
-        
+
         Gson gson = new Gson();
 
         mockMvc.perform(post("/transport")

@@ -35,12 +35,13 @@ public class TransportServiceDTO extends ServiceDTO {
     private Date departureDate;
 
     @NotNull(message = "Duration is required")
-    private Duration duration;
+    private Integer duration;
 
     @NotBlank(message = "Transport type is required")
     private String transportType;
 
-    public TransportServiceDTO(String name, Float price, String description, String city, String country, PlaceDTO departure, PlaceDTO arrival, Date departureDate, Duration duration, String transportType) {
+    public TransportServiceDTO(String name, Float price, String description, String city, String country,
+            PlaceDTO departure, PlaceDTO arrival, Date departureDate, Integer duration, String transportType) {
         super(name, price, description, city, country);
         this.departure = departure;
         this.arrival = arrival;
@@ -57,7 +58,6 @@ public class TransportServiceDTO extends ServiceDTO {
                 city,
                 country);
         service.setDepartureDate(departureDate);
-        service.setDuration(duration);
         service.setTransportType(transportType);
         service.setLatitude(departure.getLatitude());
         service.setLongitude(departure.getLongitude());

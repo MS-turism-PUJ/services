@@ -30,9 +30,10 @@ public class HousingServiceDTO extends ServiceDTO {
     private Date date;
 
     @NotNull(message = "Duration is required")
-    private Duration duration;
+    private Integer duration;
 
-    public HousingServiceDTO(String name, Float price, String description, String city, String country, PlaceDTO place, Date date, Duration duration) {
+    public HousingServiceDTO(String name, Float price, String description, String city, String country, PlaceDTO place,
+            Date date, Integer duration) {
         super(name, price, description, city, country);
         this.place = place;
         this.date = date;
