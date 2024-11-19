@@ -85,12 +85,13 @@ public class Service {
         this.serviceId = serviceId;
     }
 
-    public Service(String name, Float price, String description, String city, String country) {
+    public Service(String name, Float price, String description, String city, String country, Integer duration) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.city = city;
         this.country = country;
+        this.duration = duration;
     }
 
     public ServiceMessageDTO toServiceMessageDTO() {

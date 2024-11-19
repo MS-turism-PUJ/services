@@ -31,31 +31,36 @@ public class ServiceController {
     }
 
     @GetMapping
-    public List<Service> getAllMyServices(@RequestHeader("X-Preferred-Username") String username, @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer limit) {
+    public List<Service> getAllMyServices(@RequestHeader("X-Preferred-Username") String username,
+            @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer limit) {
         log.info("GET / with page: {} and limit: {} for user: {}", page, limit, username);
         return serviceSerivce.getAllMyServices(username, page, limit);
     }
 
     @PostMapping("/alimentation")
-    public Service createAlimentationService(@RequestHeader("X-Preferred-Username") String username, @Valid @RequestBody AlimentationServiceDTO alimentationServiceDTO) {
+    public Service createAlimentationService(@RequestHeader("X-Preferred-Username") String username,
+            @Valid @RequestBody AlimentationServiceDTO alimentationServiceDTO) {
         log.info("POST /alimentation for user: {}", username);
         return serviceSerivce.createService(alimentationServiceDTO.toService(), username);
     }
 
     @PostMapping("/housing")
-    public Service createHousingService(@RequestHeader("X-Preferred-Username") String username, @Valid @RequestBody HousingServiceDTO housingServiceDTO) {
+    public Service createHousingService(@RequestHeader("X-Preferred-Username") String username,
+            @Valid @RequestBody HousingServiceDTO housingServiceDTO) {
         log.info("POST /housing with for user: {}", username);
         return serviceSerivce.createService(housingServiceDTO.toService(), username);
     }
 
     @PostMapping("/ecowalk")
-    public Service createEcoWalkService(@RequestHeader("X-Preferred-Username") String username, @Valid @RequestBody EcoWalkServiceDTO ecoWalkServiceDTO) {
+    public Service createEcoWalkService(@RequestHeader("X-Preferred-Username") String username,
+            @Valid @RequestBody EcoWalkServiceDTO ecoWalkServiceDTO) {
         log.info("POST /ecowalk for user: {}", username);
         return serviceSerivce.createService(ecoWalkServiceDTO.toService(), username);
     }
 
     @PostMapping("/transport")
-    public Service createTransportService(@RequestHeader("X-Preferred-Username") String username, @Valid @RequestBody TransportServiceDTO transportServiceDTO) {
+    public Service createTransportService(@RequestHeader("X-Preferred-Username") String username,
+            @Valid @RequestBody TransportServiceDTO transportServiceDTO) {
         log.info("POST /transport for user: {}", username);
         return serviceSerivce.createService(transportServiceDTO.toService(), username);
     }
