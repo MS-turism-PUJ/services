@@ -12,8 +12,6 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.turism.services.dtos.ServiceMessageDTO;
 
-import java.time.Duration;
-
 @Entity
 @Getter
 @Setter
