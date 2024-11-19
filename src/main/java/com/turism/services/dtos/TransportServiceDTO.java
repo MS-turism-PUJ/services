@@ -1,6 +1,5 @@
 package com.turism.services.dtos;
 
-import java.time.Duration;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
