@@ -24,13 +24,8 @@ public class RatingService {
         this.userRepository = userRepository;
     }
 
-    public List<Rating> getServiceRatings(String username, Service service, Integer page, Integer limit) {
+    public List<Rating> getServiceRatings(Service service, Integer page, Integer limit) {
         log.info("Getting ratings for service {}", service.getServiceId());
-
-        User user = userRepository.findByUsername(username);
-        if (user == null) {
-            throw new Error("User not found");
-        }
 
         Pageable pageable = PageRequest.of(page - 1, limit);
 
@@ -39,6 +34,10 @@ public class RatingService {
 
     public Double getAverageRating(Service service) {
         return ratingRepository.findAverageRatingByService(service);
+    }
+
+    public Long getQuantity(Service service) {
+        return ratingRepository.countByService(service);
     }
 
     public Rating rateService(String username, Service service, Integer rating, String comment) {
@@ -58,5 +57,14 @@ public class RatingService {
         }
 
         return ratingRepository.save(new Rating(null, rating, comment, service, user));
+    }
+
+    public Rating getRatingByUser(String username, Service service) {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            throw new Error("User not found");
+        }
+
+        return ratingRepository.findByServiceAndUser(service, user);
     }
 }

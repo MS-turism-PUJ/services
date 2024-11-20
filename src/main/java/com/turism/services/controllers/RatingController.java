@@ -46,15 +46,27 @@ public class RatingController {
             return ResponseEntity.status(404).body(new ErrorDTO("Service " + serviceId + " not found"));
         }
 
-        List<Rating> ratings = ratingService.getServiceRatings(username, service, page, limit);
+        List<Rating> ratings = ratingService.getServiceRatings(service, page, limit);
 
         Double averageRating = ratingService.getAverageRating(service);
 
-        RatingsResponseDTO ratingsResponseDTO = new RatingsResponseDTO(averageRating, ratings.stream().map(rating -> {
+        Long quantity = ratingService.getQuantity(service);
+
+        RatingsResponseDTO ratingsResponseDTO = new RatingsResponseDTO(averageRating, quantity, ratings.stream().map(rating -> {
             return new RatingDTO(rating.getRating(), rating.getComment());
         }).toList());
 
         return ResponseEntity.ok(ratingsResponseDTO);
+    }
+
+    @GetMapping("/average/{serviceId}")
+    public ResponseEntity<?> getMethodName(@PathVariable String serviceId) {
+        return ResponseEntity.ok(ratingService.getAverageRating(serviceService.getService(serviceId)));
+    }
+
+    @GetMapping("/quantity/{serviceId}")
+    public ResponseEntity<?> getMethodName2(@PathVariable String serviceId) {
+        return ResponseEntity.ok(ratingService.getQuantity(serviceService.getService(serviceId)));
     }
 
     @PostMapping("/rate/{serviceId}")
@@ -70,4 +82,10 @@ public class RatingController {
         return ResponseEntity
                 .ok(ratingService.rateService(username, service, ratingDTO.getRating(), ratingDTO.getComment()));
     }
+
+    @GetMapping("/my-rating/{serviceId}")
+    public ResponseEntity<?> getMethodName(@RequestHeader("X-Preferred-Username") String username, @PathVariable String serviceId) {
+        return ResponseEntity.ok(ratingService.getRatingByUser(username, serviceService.getService(serviceId)));
+    }
+    
 }
